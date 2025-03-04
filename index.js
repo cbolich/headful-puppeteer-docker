@@ -10,11 +10,13 @@ const puppeteer = require('puppeteer');
             '--no-sandbox',
             '--disable-setuid-sandbox',
             '--disable-web-security',
-            '--disable-features=IsolateOrigins,site-per-process'
+            '--disable-features=IsolateOrigins,site-per-process',
+            '--remote-debugging-port=9222',
         ]
     });
 
     const page = await browser.newPage();
     await page.goto('https://google.com');
+
     console.log('on google.com')
 })();

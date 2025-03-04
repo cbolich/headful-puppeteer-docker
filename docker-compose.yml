@@ -1,8 +1,17 @@
-version: '3.8'
-
+version: '3'
 services:
-  server:
+  headfulcontainer:
     build: ./
     image: samc621/headful-puppeteer-docker
+    cap_add:
+      - SYS_ADMIN
     ports:
-      - '5900:5900'
+      - '5900:5900'  # VNC server
+      - '9223:9223'   # Nginx proxy for Chrome debugging
+    networks:
+      - shark-external-network
+
+networks:
+  shark-external-network:
+    external: true
+    name: shark-external-network
